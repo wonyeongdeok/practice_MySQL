@@ -10,3 +10,4 @@ FROM   used_goods_board a
 WHERE  Date_format(a.created_date, '%Y-%m') = '2022-10'
 ORDER  BY created_date ASC,
           a.title ASC;
+          
