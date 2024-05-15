@@ -1,4 +1,5 @@
-SELECT book_id, DATE_FORMAT(published_date, '%Y-%m-%d') AS published_date
-FROM book
-WHERE DATE_FORMAT(published_date, '%Y')='2021' AND
-      category='인문'
+SELECT BOOK_ID,
+       DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') AS PUBLISHED_DATE
+FROM   BOOK
+WHERE  DATE_FORMAT(PUBLISHED_DATE, '%Y') = '2021'
+       AND CATEGORY = '인문';
