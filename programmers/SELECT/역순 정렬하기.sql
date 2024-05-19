@@ -1,3 +1,5 @@
-SELECT name, datetime
-FROM animal_ins
-ORDER BY animal_id DESC
+SELECT  NAME
+        ,DATETIME
+  FROM  ANIMAL_INS
+ ORDER
+    BY  ANIMAL_ID DESC

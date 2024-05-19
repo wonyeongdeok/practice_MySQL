@@ -1,19 +1,17 @@
-SELECT DATE_FORMAT(sales_date, '%Y-%m-%d') AS sales_date,
-       product_id,
-       user_id,
-       sales_amount
-FROM online_sale
-WHERE sales_date>='2022-03-01' AND
-      sales_date<'2022-04-01'
-      
+SELECT  DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE
+        ,PRODUCT_ID
+        ,USER_ID
+        ,SALES_AMOUNT
+  FROM  ONLINE_SALE
+ WHERE  DATE_FORMAT(SALES_DATE, '%Y-%m') = '2022-03'
 UNION
-
-SELECT DATE_FORMAT(sales_date, '%Y-%m-%d') AS sales_date,
-       product_id,
-       NULL AS user_id,
-       sales_amount
-FROM offline_sale
-WHERE sales_date>='2022-03-01' AND
-      sales_date<'2022-04-01'
-
-ORDER BY sales_date, product_id, user_id
+SELECT  DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE
+        ,PRODUCT_ID
+        ,NULL AS USER_ID
+        ,SALES_AMOUNT
+  FROM  OFFLINE_SALE
+ WHERE  DATE_FORMAT(SALES_DATE, '%Y-%m') = '2022-03'
+ ORDER
+    BY  SALES_DATE ASC
+        ,PRODUCT_ID ASC
+        ,USER_ID ASC
