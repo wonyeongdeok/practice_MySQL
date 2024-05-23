@@ -1,4 +1,4 @@
-    SELECT  A.ITEM_ID
+SELECT  A.ITEM_ID
         ,B.ITEM_NAME
         ,B.RARITY
   FROM  ITEM_TREE AS A
