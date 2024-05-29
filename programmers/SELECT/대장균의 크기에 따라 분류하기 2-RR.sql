@@ -1,0 +1,46 @@
+/*
+- CASE 문에서 ELSE없이 작성 가능
+- ELSE 없이 작성 시 WHEN 절의 어떠한 조건에도 해당하지 않을 경우 NULL 반환 
+*/
+
+SELECT  ID
+        ,CASE WHEN SIZE_PERCENT > 0.75 THEN 'LOW'
+              WHEN SIZE_PERCENT > 0.5 THEN 'MEDIUM'
+              WHEN SIZE_PERCENT > 0.25 THEN 'HIGH'
+              ELSE 'CRITICAL'
+              END AS 'COLONY_NAME'
+  FROM  (SELECT  *
+                 ,ROW_NUMBER() OVER(ORDER BY SIZE_OF_COLONY DESC) / (COUNT(*) OVER()) AS SIZE_PERCENT
+           FROM  ECOLI_DATA) AS A
+ ORDER
+    BY  ID ASC;
+
+/*
+SELECT  ID
+        ,CASE
+            WHEN 0 <= SIZE_PERCENT AND SIZE_PERCENT <= 0.25 THEN 'CRITICAL'
+            WHEN 0.25 < SIZE_PERCENT AND SIZE_PERCENT <= 0.5 THEN 'HIGH'
+            WHEN 0.5 < SIZE_PERCENT AND SIZE_PERCENT <= 0.75 THEN 'MEDIUM'
+            ELSE 'LOW'
+         END AS 'COLONY_NAME'
+  FROM  (SELECT  *
+                 ,ROW_NUMBER() OVER(ORDER BY SIZE_OF_COLONY DESC) / (COUNT(*) OVER()) AS SIZE_PERCENT
+           FROM  ECOLI_DATA) AS A
+ ORDER
+    BY  ID ASC;
+*/
+
+/*
+SELECT  ID
+        ,CASE
+            WHEN SIZE_PERCENT BETWEEN 0 AND 0.25 THEN 'CRITICAL'
+            WHEN SIZE_PERCENT BETWEEN 0.25 AND 0.5 THEN 'HIGH'
+            WHEN SIZE_PERCENT BETWEEN 0.5 AND 0.75 THEN 'MEDIUM'
+            ELSE 'LOW'
+         END AS 'COLONY_NAME'
+  FROM  (SELECT  *
+                 ,ROW_NUMBER() OVER(ORDER BY SIZE_OF_COLONY DESC) / (COUNT(*) OVER()) AS SIZE_PERCENT
+           FROM  ECOLI_DATA) AS A
+ ORDER
+    BY  ID ASC;
+*/
