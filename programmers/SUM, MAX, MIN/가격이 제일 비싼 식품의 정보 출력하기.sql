@@ -1,8 +1,4 @@
-SELECT product_id,
-       product_name,
-       product_cd,
-       category,
-       price
-FROM food_product
-WHERE price=(SELECT MAX(price)
-             FROM food_product)
+SELECT  *
+  FROM  FOOD_PRODUCT
+ WHERE  PRICE = (SELECT  MAX(PRICE)
+                   FROM  FOOD_PRODUCT);

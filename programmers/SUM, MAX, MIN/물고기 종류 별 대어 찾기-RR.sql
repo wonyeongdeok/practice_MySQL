@@ -1,0 +1,25 @@
+-- 더 깔끔하게 작성할 수 있는 방법이 있을까?
+WITH CTE AS
+(
+    SELECT  B.FISH_NAME
+            ,MAX(A.LENGTH) AS MAX_LENGTH
+      FROM  FISH_INFO AS A
+      LEFT
+      JOIN  FISH_NAME_INFO AS B
+        ON  A.FISH_TYPE = B.FISH_TYPE
+     GROUP
+        BY  B.FISH_NAME
+)
+SELECT  B.ID
+        ,A.FISH_NAME
+        ,B.LENGTH
+  FROM  FISH_NAME_INFO AS A
+ INNER
+  JOIN  CTE
+    ON  A.FISH_NAME = CTE.FISH_NAME
+ INNER
+  JOIN  FISH_INFO AS B
+    ON  A.FISH_TYPE = B.FISH_TYPE
+   AND  B.LENGTH = CTE.MAX_LENGTH
+ ORDER
+    BY  B.ID;

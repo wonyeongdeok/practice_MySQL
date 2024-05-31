@@ -1,2 +1,2 @@
-SELECT MAX(datetime) AS 시간
-FROM animal_ins
+SELECT  MAX(DATETIME) AS '시간'
+  FROM  ANIMAL_INS;
