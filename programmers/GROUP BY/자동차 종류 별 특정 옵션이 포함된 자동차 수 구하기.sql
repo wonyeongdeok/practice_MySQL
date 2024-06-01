@@ -1,6 +1,10 @@
-SELECT car_type,
-       Count(*) cars
-FROM   car_rental_company_car
-WHERE  options REGEXP '통풍시트|열선시트|가죽시트'
-GROUP  BY car_type
-ORDER  BY car_type 
+SELECT  CAR_TYPE
+        ,COUNT(*) AS CARS
+  FROM  CAR_RENTAL_COMPANY_CAR
+ WHERE  FIND_IN_SET('통풍시트', OPTIONS) > 0
+    OR  FIND_IN_SET('열선시트', OPTIONS) > 0
+    OR  FIND_IN_SET('가죽시트', OPTIONS) > 0
+ GROUP
+    BY  CAR_TYPE
+ ORDER
+    BY  CAR_TYPE ASC;
