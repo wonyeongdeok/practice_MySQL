@@ -1,12 +1,19 @@
-SELECT a.food_type,
-       a.rest_id,
-       a.rest_name,
-       a.favorites
-FROM   rest_info a
-       INNER JOIN (SELECT food_type,
-                          Max(favorites) favorites
-                   FROM   rest_info
-                   GROUP  BY food_type) b
-               ON a.food_type = b.food_type
-                  AND a.favorites = b.favorites
-ORDER  BY food_type DESC;
+WITH CTE AS
+(
+SELECT  FOOD_TYPE
+        ,MAX(FAVORITES) AS MAX_FAVORITES
+  FROM  REST_INFO
+ GROUP
+    BY  FOOD_TYPE
+)
+SELECT  A.FOOD_TYPE
+        ,A.REST_ID
+        ,A.REST_NAME
+        ,A.FAVORITES
+  FROM  REST_INFO AS A  
+ INNER
+  JOIN  CTE AS B
+    ON  A.FOOD_TYPE = B.FOOD_TYPE
+   AND  A.FAVORITES = B.MAX_FAVORITES
+ ORDER
+    BY  A.FOOD_TYPE DESC;
