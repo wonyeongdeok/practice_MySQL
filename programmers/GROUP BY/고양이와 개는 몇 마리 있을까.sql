@@ -1,7 +1,8 @@
-SELECT animal_type,
-       Count(*) count
-FROM   animal_ins
-WHERE  animal_type = 'Cat'
-        OR animal_type = 'Dog'
-GROUP  BY animal_type
-ORDER  BY animal_type 
+SELECT  ANIMAL_TYPE
+        ,COUNT(*) AS count
+  FROM  ANIMAL_INS
+ WHERE  ANIMAL_TYPE IN ('Cat', 'Dog')
+ GROUP
+    BY  ANIMAL_TYPE
+ ORDER
+    BY  ANIMAL_TYPE ASC;
