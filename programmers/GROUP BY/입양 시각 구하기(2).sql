@@ -1,8 +1,18 @@
-SET @hour := -1;
+WITH RECURSIVE HOURS AS (
+    SELECT  0 AS HOUR
+     UNION
+    SELECT  HOUR + 1
+      FROM  HOURS
+     WHERE  HOUR < 23
+)
 
-SELECT ( @hour := @hour + 1 )          hour,
-       (SELECT Count(*)
-        FROM   animal_outs
-        WHERE  Hour(datetime) = @hour) count
-FROM   animal_outs
-WHERE  @hour < 23 
+SELECT  B.HOUR AS HOUR
+        ,COUNT(ANIMAL_ID) AS CHOUT
+  FROM  ANIMAL_OUTS AS A
+ RIGHT
+  JOIN  HOURS AS B
+    ON  HOUR(A.DATETIME) = B.HOUR
+ GROUP
+    BY  B.HOUR
+ ORDER
+    BY  B.HOUR ASC;
