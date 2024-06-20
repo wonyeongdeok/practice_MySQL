@@ -1,0 +1,18 @@
+SELECT  CASE
+            WHEN GROUP_CONCAT(A.NAME) LIKE '%Python%' AND
+                 GROUP_CONCAT(CATEGORY) LIKE '%Front End%' THEN 'A'
+            WHEN GROUP_CONCAT(A.NAME) LIKE '%C#%' THEN 'B'
+            WHEN GROUP_CONCAT(CATEGORY) LIKE '%Front End%' THEN 'C'
+         END AS GRADE
+         ,B.ID
+         ,MAX(B.EMAIL) AS EMAIL
+  FROM  SKILLCODES AS A
+ INNER
+  JOIN  DEVELOPERS AS B
+    ON  A.CODE & B. SKILL_CODE
+ GROUP
+    BY  B.ID
+HAVING  GRADE IS NOT NULL
+ ORDER
+    BY  GRADE ASC
+        ,B.ID ASC;
