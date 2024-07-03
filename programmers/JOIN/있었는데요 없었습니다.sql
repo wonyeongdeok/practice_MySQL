@@ -1,7 +1,9 @@
-SELECT a.animal_id,
-       a.NAME
-FROM   animal_ins a
-       LEFT JOIN animal_outs b
-              ON a.animal_id = b.animal_id
-WHERE  a.datetime > b.datetime
-ORDER  BY a.datetime;
+SELECT  A.ANIMAL_ID
+        ,A.NAME
+  FROM  ANIMAL_INS AS A
+ RIGHT
+  JOIN  ANIMAL_OUTS AS B
+    ON  A.ANIMAL_ID = B.ANIMAL_ID
+ WHERE  A.DATETIME > B.DATETIME
+ ORDER
+    BY  A.DATETIME ASC;

@@ -1,6 +1,9 @@
-SELECT b.animal_id,
-       b.name
-FROM   animal_ins a
-       RIGHT JOIN animal_outs b
-               ON a.animal_id = b.animal_id
-WHERE  a.animal_id IS NULL;
+SELECT  B.ANIMAL_ID
+        ,B.NAME
+  FROM  ANIMAL_INS AS A
+ RIGHT
+  JOIN  ANIMAL_OUTS AS B
+    ON  A.ANIMAL_ID = B.ANIMAL_ID
+ WHERE  A.ANIMAL_ID IS NULL
+ ORDER
+    BY  B.ANIMAL_ID ASC;

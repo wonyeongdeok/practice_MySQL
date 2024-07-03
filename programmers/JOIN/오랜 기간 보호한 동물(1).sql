@@ -1,8 +1,10 @@
-SELECT a.name,
-       a.datetime
-FROM   animal_ins a
-       LEFT JOIN animal_outs b
-              ON a.animal_id = b.animal_id
-WHERE  b.animal_id IS NULL
-ORDER  BY a.datetime
-LIMIT  3
+SELECT  A.NAME
+        ,A.DATETIME
+  FROM  ANIMAL_INS AS A
+  LEFT
+  JOIN  ANIMAL_OUTS AS B
+    ON  A.ANIMAL_ID = B.ANIMAL_ID
+ WHERE  B.ANIMAL_ID IS NULL
+ ORDER
+    BY  A.DATETIME ASC
+ LIMIT  3;
